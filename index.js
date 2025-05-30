@@ -30,7 +30,11 @@ const getDolar = async () => {
 function getJsonPath() {
   const pathname = window.location.pathname;
   console.log("Current Pathname: ", pathname);
-  if (pathname.includes("index.html") || pathname === "/") {
+  if (
+    pathname.includes("index.html") ||
+    pathname === "/" ||
+    pathname.endsWith("/website-ecommerce/")
+  ) {
     return "products.json";
   } else if (pathname.includes("pages/")) {
     return "../products.json";
@@ -39,8 +43,14 @@ function getJsonPath() {
 }
 
 function getImagePath(img) {
+  if (!img) return ""; // Protección contra imágenes nulas o indefinidas
+
   const pathname = window.location.pathname;
-  if (pathname.includes("index.html") || pathname === "/") {
+  if (
+    pathname.includes("index.html") ||
+    pathname === "/" ||
+    pathname.endsWith("/website-ecommerce/")
+  ) {
     return `${img}`; // La ruta ya está completa en el JSON
   } else if (pathname.includes("pages/")) {
     return `../${img}`; // Ruta relativa para páginas dentro de la carpeta 'pages'
@@ -50,8 +60,19 @@ function getImagePath(img) {
 
 const loadProducts = async () => {
   try {
-    const dolarValue = await getDolar();
-    console.log("Dolar Value: ", dolarValue);
+    // Utiliza un valor por defecto en caso de fallo
+    let dolarValue;
+    try {
+      dolarValue = await getDolar();
+      console.log("Dolar Value: ", dolarValue);
+    } catch (error) {
+      console.warn(
+        "Error al obtener el valor del dólar, usando valor por defecto:",
+        error
+      );
+      dolarValue = 1000; // Valor por defecto
+    }
+
     const response = await fetch(getJsonPath());
     console.log("Fetching JSON from: ", getJsonPath());
     const data = await response.json();
@@ -123,8 +144,13 @@ const loadProducts = async () => {
             // Si está en GitHub Pages, usa el directorio del repositorio
             basePath += "/website-ecommerce/pages/sproduct.html";
           } else {
-            // Si está en local
-            basePath += "/pages/sproduct.html";
+            // Verifica si estamos dentro de un directorio websiteEcommerce
+            if (window.location.pathname.includes("/webSiteEcommerce/")) {
+              basePath += "/pages/sproduct.html";
+            } else {
+              // Ruta genérica para otros casos
+              basePath += "/pages/sproduct.html";
+            }
           }
 
           // Redireccionar a la página sproduct.html

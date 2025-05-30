@@ -1,0 +1,308 @@
+/* Custom properties para facilitar cambios rápidos */
+:root {
+  --color-primary: #088178;
+  --color-primary-dark: #066963;
+  --color-text: #1a1a1a;
+  --color-text-light: #465b52;
+  --color-bg-light: #e3e6f3;
+  --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+/* Mejoras visuales para las imágenes */
+img {
+  max-width: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+/* Mejoras de accesibilidad y para dispositivos móviles */
+button,
+a,
+input[type="submit"] {
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+/* Mejoras en el hover de los productos */
+#product1 .pro:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Mejoras para la navbar en móvil */
+@media (max-width: 799px) {
+  #navbar.active {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Animación para el botón "Añadir al carrito" */
+.fa-cart-shopping {
+  transition: transform 0.3s ease;
+}
+
+.fa-cart-shopping:hover {
+  transform: scale(1.2);
+  color: var(--color-primary);
+}
+
+/* Mejora para el loading de imágenes */
+img.loading {
+  opacity: 0.5;
+}
+
+/* Fix para imágenes rotas */
+img.error {
+  min-height: 200px;
+  background-color: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+}
+
+/* Mejoras para la sección de testimonios */
+#banner .banner-overlay,
+#banner3 .banner-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+#banner *,
+#banner3 * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Fix específico para los banners en #banner3 */
+#banner3 .banner-box {
+  position: relative;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  min-height: 200px;
+}
+
+/* Mejoras para el newsletter - más atractivo */
+#newsletter {
+  background-blend-mode: overlay;
+}
+
+#newsletter button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* Mejoras para dispositivos pequeños */
+@media (max-width: 380px) {
+  #header {
+    padding: 10px 20px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+}
+
+/* Badge para el carrito en vista móvil */
+.mobile-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#mobile a {
+  position: relative;
+}
+
+/* Botón volver arriba */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-3px);
+}
+
+/* Botón modo oscuro */
+.dark-mode-toggle {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-3px);
+}
+
+/* Estilos para el modo oscuro */
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: #f0f0f0;
+}
+
+body.dark-mode #header {
+  background-color: #1f1f1f;
+}
+
+body.dark-mode #navbar li a {
+  color: #f0f0f0;
+}
+
+body.dark-mode #product1 .pro {
+  background-color: #1f1f1f;
+}
+
+body.dark-mode footer {
+  background-color: #1a1a1a;
+}
+
+body.dark-mode .section-p1 {
+  background-color: #121212;
+}
+
+body.dark-mode .newsletter {
+  background-color: #1f1f1f;
+}
+
+/* Lazy loading images */
+img.lazy {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+img.lazy.loaded {
+  opacity: 1;
+}
+
+/* Skeleton loading para productos */
+.skeleton-loader {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.pro .skeleton-image {
+  height: 200px;
+  width: 100%;
+}
+
+.pro .skeleton-text {
+  height: 20px;
+  margin: 8px 0;
+  width: 80%;
+}
+
+.pro .skeleton-price {
+  height: 24px;
+  width: 40%;
+  margin-top: 12px;
+}
+
+/* Mejora la experiencia de usuario con animaciones suaves */
+@media (prefers-reduced-motion: no-preference) {
+  .section-p1,
+  #newsletter,
+  #sm-banner {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Mensaje de advertencia cuando JavaScript está desactivado */
+.noscript-warning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ff4757;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+  z-index: 9999;
+}
